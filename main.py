@@ -42,13 +42,17 @@ def compare_videos(updated:dict):
                 save_video(updated)
 
 
-def main():
-    playlist_link = 'PLqmJZgbzEiLuSiCboeBiGLB0veDJxiWQL'
+def start(playlist_link:str):
     api_key = APIKey.key
-
     lastest_video = {"title":None, "date":None, "url":None}
     parse_array(lastest_video, get_array(playlist_link, api_key))
     compare_videos(lastest_video)
+
+
+def main():
+    with open('playlists.data', 'r') as f:
+        for link in f:
+            start(link)
 
 
 if __name__ == "__main__":
